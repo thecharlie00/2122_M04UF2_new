@@ -1,0 +1,14 @@
+
+import './App.css';
+import Title from './Title';
+import Form from './Form';
+function App() {
+  return (
+    <div className="App">
+	<Title/>
+	<Form/º>
+    </div>
+  );
+}
+
+export default App;
