@@ -18,7 +18,9 @@ constructor(props){
       componentWillMount(){
 		fetch("http://192.168.1.50:3030/")
 		.then(response => response.json())
-		.then(data => console.log(data));
+		.then(data => this.setTasks(data));
+		
+		
 	}
 
 
@@ -32,16 +34,30 @@ setTasks = data => {
 		});
 	};
 
+
+
 addTask = task =>{
  	this.state.tasks.push(task);
 	this.setState({
 		tasks: this.state.tasks
 		});
+
+	fetch('http://192.168.1.50:3030/',{
+			method: 'POST',
+			body: '{"task":"'+task+'"}'
+				
+
+	});
 	};
-removeTask = id_task => {
-	this.state.tasks.splice(id_task, 1);
-	this.setState({
-		tasks: this.state.tasks
+
+
+removeTask = index => {
+      this.state.taskList.splice(index,0);
+
+		this.setState({taskList : this.state.taskList});
+		fetch("http://10.40.2.108:3030/",{
+			method: "POST",
+			body: '{"_id" : "' + this.state.idList[index] + '"}'
 		});
 	}
 
