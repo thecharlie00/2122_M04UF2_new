@@ -11,7 +11,10 @@ function Item(props){
 		<ListItem  >
 		<ListItemButton>
 			<ListItemText primary={props.task} />
-			<RemoveTask task_id={props.task_id} removeTask={props.removeTask} />
+			<RemoveTask task_id={props.task_id}
+			task={props.task}
+			order={props.order}
+			removeTask={props.removeTask} />
 		</ListItemButton>
 		</ListItem >
 

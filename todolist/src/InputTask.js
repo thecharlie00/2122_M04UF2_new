@@ -11,12 +11,13 @@ class InputTask extends React.Component{
 
 	};
 }
-	handleChange = (event)=>{
+	handleChange = event =>{
 	this.props.handleChange(event);
 		this.setState({
 			value : event.target.value
 
 });
+event.preventDefault();
 
 }
 

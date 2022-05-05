@@ -15,7 +15,7 @@ class Form extends React.Component{
 
 }
 
-handleSubmit = (event)=> {
+handleSubmit = event => {
 	event.preventDefault();	
 	this.props.addTask(this.state.task);
 
@@ -26,7 +26,7 @@ handleSubmit = (event)=> {
 
 }
 
-handleChange = (event)=>{
+handleChange = event =>{
 
 	this.setState({
 		task:event.target.value

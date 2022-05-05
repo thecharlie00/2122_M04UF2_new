@@ -31,16 +31,17 @@ class RemoveTask extends React.Component{
 	this.setState({open:false});
 }
 
-	handleDelete = () =>{
-	this.props.removeTask(this.props.task_id);
-	this.setState({open:false});
+	removeTask = () => {
+		this.props.removeTask(this.props.task,this.props.order, this.props.task_id);
+		this.setState({open:false});
+	}
 
-}
+
 
 
  render() {
- 	return (
-	<div>
+ return (
+		<div>
 		<Button variant="contained" 
 				startIcon=<DeleteIcon /> 
 				onClick={this.handleOnClick}
@@ -79,9 +80,8 @@ class RemoveTask extends React.Component{
 </div>
 
 
-
-);
-
+		);	
+	}
 }
-}
+
 export default RemoveTask;

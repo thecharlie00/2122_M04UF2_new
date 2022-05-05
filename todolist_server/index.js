@@ -19,7 +19,7 @@ mongo_client.connect(url, function(err,conn )
 	console.log("ERROR");
 	return;}
 
-	db = conn.db("ToDoList");
+	db = conn.db("todolist");
 	console.log("Inside Server");
 }
 
