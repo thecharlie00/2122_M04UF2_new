@@ -23,7 +23,7 @@ event.preventDefault();
 
 render(){
 	return(
-			<TextField id="task_input" 	
+			<TextField 	
 			label="Tarea" 
 			variant="outlined" 
 			value={this.state.value}  

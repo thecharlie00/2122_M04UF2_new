@@ -6,17 +6,17 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
+
 
 import DialogTitle from '@mui/material/DialogTitle';
 
 
 class RemoveTask extends React.Component{
 
-	constructor (props){
+constructor (props){
 		super(props);
 		this.state = { 
-						open: false
+					open: false
 					 };
 	
 		}
@@ -31,10 +31,13 @@ class RemoveTask extends React.Component{
 	this.setState({open:false});
 }
 
-	removeTask = () => {
-		this.props.removeTask(this.props.task,this.props.order, this.props.task_id);
-		this.setState({open:false});
-	}
+	handleDelete = () =>{
+	console.log(this.props.key);
+	this.props.removeTask(this.props.task,this.props.order, this.props.task_id);
+	this.setState({open:false});
+
+}
+
 
 
 
@@ -42,41 +45,23 @@ class RemoveTask extends React.Component{
  render() {
  return (
 		<div>
-		<Button variant="contained" 
-				startIcon=<DeleteIcon /> 
-				onClick={this.handleOnClick}
+		<Button  variant="contained" 
+					endIcon=<DeleteIcon /> 
+					onClick={this.handleOnClick}>Eliminar
+				</Button>
 
+				<Dialog	open={this.state.open} onClose={this.handleClose}>
+					<DialogTitle>{'Seguro que has terminado?'}</DialogTitle>
 
-			//	{function(event){	
-					
-					//props.removeTask(props.task_id);
-
-				
-				
-		>	
-
-		BORRAR
-		 
-		</Button>
-
-		<Dialog>  
-			open={this.state.open}
-			onClose={this.handleClose}
-			>
-			<DialogTitle>
-				{'Has terminado?'}
-					</DialogTitle>
-			<DialogActions>
-				<Button onClick={this.handleDelete}>
-					BORRAR
+					<DialogActions>
+						<Button  onClick={this.handleDelete}>
+							Si
 						</Button>
-				<Button onClick={this.handleClose}> 
-
-					Salir
-					</Button>
-
-			</DialogActions>
-		</Dialog>
+						<Button onClick={this.handleClose}>
+							No
+						</Button>
+					</DialogActions>
+				</Dialog>
 </div>
 
 

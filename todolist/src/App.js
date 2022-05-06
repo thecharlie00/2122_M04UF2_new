@@ -2,9 +2,7 @@
 import './App.css';
 import Title from './Title';
 import Form from './Form';
-import SubmitTask from './SubmitTask';
-import List from './List';
-import Item from './Item';
+import TaskList from './List';
 import React from 'react';
 class App extends React.Component{
 
@@ -32,30 +30,34 @@ constructor(props) {
 	}
 
 	addTask = task =>{	
-		fetch("http://192.168.1.50:3030", {
-			method:"POST",
-			body: '{"tasks":"' +task+'", "remove":"false"}'
-		})
-	 	.then(response => response.json() )
-     		.then(data => {let id = data[0]["_id"]
+		fetch("http://192.168.1.50:3030", {method:"POST", body: '{"tasks":"' +task+'", "remove":"false"}' })
+	 .then(response => response.json() )
+     .then(data => {let id = data[0]["_id"]
 
-			this.state.tasks.push(task);
-			this.state.tasks_id.push(id);
+	
 
-			this.setState({	tasks: this.state.tasks	});
+		this.state.tasks.push(task);
+		this.state.tasks_id.push(id);
+
+		this.setState({
+		tasks: this.state.tasks
 		});
-	}
+		console.log(this.state.tasks);
+		console.log(this.state.tasks_id);
+	});
+}
 
 	removeTask = (task,  key, id_task) => {
-		this.state.tasks.splice(key, 1);
-		this.setState({
-			tasks: this.state.tasks
-		});
-		
-		fetch("http://192.168.1.50:3030/", {
-			method:"POST",
-			body: '{"task_id":"'+id_task+'", "remove":"true"}'
-		});
+		console.log(key);
+	this.state.tasks.splice(key, 1);
+	this.setState({
+	tasks:this.state.tasks
+	});
+	fetch("http://192.168.1.50:3030", {method:"post", body: '{"task_id":"' +id_task+'", "remove":"true"}' });
+
+
+			console.log(task);
+			console.log(id_task);
 	}
 
 
@@ -67,7 +69,8 @@ render (){
  	<div className="App"    >
 		<Title />
 		<Form addTask={this.addTask} />
-		<List tasks={this.state.tasks}
+		<TaskList tasks={this.state.tasks}
+			tasks_id={this.state.tasks_id}
 			removeTask={this.removeTask}
 		/>
 
